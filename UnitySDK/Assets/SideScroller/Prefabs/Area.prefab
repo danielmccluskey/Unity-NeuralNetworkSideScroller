@@ -112,19 +112,19 @@ MonoBehaviour:
   brain: {fileID: 11400000, guid: 999f6a3f886fd8f40bac3379722b223c, type: 2}
   agentParameters:
     agentCameras: []
-    maxStep: 0
+    maxStep: 10000
     resetOnDone: 1
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
-  speed: 50
-  maxspeed: 15
-  jumpSpeed: 400
-  gravity: 0
-  useVectorObs: 1
-  m_tGroundCheck: {fileID: 6664587683070933999}
+  m_goLevelManagerRef: {fileID: 1758838867040211403}
   m_lmGroundMask:
     serializedVersion: 2
     m_Bits: 16384
+  m_tGroundCheck: {fileID: 6664587683070933999}
+  m_bUseVectorObservations: 1
+  m_fJumpSpeed: 500
+  m_fMaxSpeed: 85
+  m_fSpeed: 15
 --- !u!54 &1758838865002165211
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -284,6 +284,8 @@ MonoBehaviour:
     type: 3}
   m_iLevelWidth: 424
   m_iLevelHeight: 32
+  m_goEnemyPrefab: {fileID: 2743950827145291483, guid: e2b585ece987c7049a6d8177e5de50b8,
+    type: 3}
 --- !u!1 &4222174701371369129
 GameObject:
   m_ObjectHideFlags: 0

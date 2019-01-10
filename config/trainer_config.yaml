@@ -28,8 +28,11 @@ BananaLearning:
     buffer_size: 10240
     max_steps: 1.0e5
 
-SideScrollerLearningBrain:
+SideScrollerLearning:
     max_steps: 2e6
+    summary_freq: 3000
+    batch_size: 128
+    buffer_size: 2048
     
 BouncerLearning:
     normalize: true
