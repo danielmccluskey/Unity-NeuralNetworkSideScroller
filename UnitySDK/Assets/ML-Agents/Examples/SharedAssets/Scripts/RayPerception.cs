@@ -3,16 +3,15 @@ using UnityEngine;
 
 namespace MLAgents
 {
-
     /// <summary>
     /// Ray perception component. Attach this to agents to enable "local perception"
-    /// via the use of ray casts directed outward from the agent. 
+    /// via the use of ray casts directed outward from the agent.
     /// </summary>
     public class RayPerception : MonoBehaviour
     {
-        List<float> perceptionBuffer = new List<float>();
-        Vector3 endPosition;
-        RaycastHit hit;
+        private List<float> perceptionBuffer = new List<float>();
+        private Vector3 endPosition;
+        private RaycastHit hit;
 
         /// <summary>
         /// Creates perception vector to be used as part of an observation of an agent.
@@ -38,7 +37,7 @@ namespace MLAgents
                 if (Application.isEditor)
                 {
                     Debug.DrawRay(transform.position + new Vector3(0f, startOffset, 0f),
-                        endPosition, Color.black, 0.01f, true);
+                     endPosition, Color.black, 0.01f, true);
                 }
 
                 float[] subList = new float[detectableObjects.Length + 2];

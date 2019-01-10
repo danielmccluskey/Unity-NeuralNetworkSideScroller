@@ -11,6 +11,9 @@ public class CS_LevelSpawner : MonoBehaviour
     private GameObject m_goHoleBlock;//The block that fills holes in the level
 
     [SerializeField]
+    private GameObject m_goGoalBlock;
+
+    [SerializeField]
     private int m_iLevelWidth = 10;//The width of the level in blocks/tiles
 
     [SerializeField]
@@ -18,9 +21,13 @@ public class CS_LevelSpawner : MonoBehaviour
 
     private List<GameObject> m_lLevelBlockList = new List<GameObject>();//List of blocks used in the level
     private List<GameObject> m_lEnemyBlockList = new List<GameObject>();//List of enemies used in the level
+    private List<GameObject> m_lCoinList = new List<GameObject>();//List of enemies used in the level
 
     [SerializeField]
     private GameObject m_goEnemyPrefab;//The prefab used for enemies
+
+    [SerializeField]
+    private GameObject m_goCoinPrefab;
 
     // Start is called before the first frame update
     private void Start()
@@ -49,12 +56,25 @@ public class CS_LevelSpawner : MonoBehaviour
                     goNewLevelBlock.transform.position = transform.position;
                     goNewLevelBlock.transform.Translate(x * goNewLevelBlock.transform.localScale.x, -(y * goNewLevelBlock.transform.localScale.y), 0);
                 }
+                if (LevelMaps.Level1[y * m_iLevelWidth + x] == 5)//Goal block
+                {
+                    GameObject goNewLevelBlock = Instantiate(m_goGoalBlock, transform);
+                    goNewLevelBlock.transform.position = transform.position;
+                    goNewLevelBlock.transform.Translate(x * goNewLevelBlock.transform.localScale.x, -(y * goNewLevelBlock.transform.localScale.y), 0);
+                }
                 if (LevelMaps.Level1[y * m_iLevelWidth + x] == 3)//Enemy
                 {
                     GameObject goNewLevelBlock = Instantiate(m_goEnemyPrefab, transform);
                     goNewLevelBlock.transform.position = transform.position;
                     goNewLevelBlock.transform.Translate(x * goNewLevelBlock.transform.localScale.x, -(y * goNewLevelBlock.transform.localScale.y), 0);
                     m_lEnemyBlockList.Add(goNewLevelBlock);
+                }
+                if (LevelMaps.Level1[y * m_iLevelWidth + x] == 4)//Coin
+                {
+                    GameObject goNewLevelBlock = Instantiate(m_goCoinPrefab, transform);
+                    goNewLevelBlock.transform.position = transform.position;
+                    goNewLevelBlock.transform.Translate(x * goNewLevelBlock.transform.localScale.x, -(y * goNewLevelBlock.transform.localScale.y), 0);
+                    m_lCoinList.Add(goNewLevelBlock);
                 }
             }
         }
@@ -73,11 +93,24 @@ public class CS_LevelSpawner : MonoBehaviour
     }
 
     /// <summary>
+    /// Destroys the coins.
+    /// </summary>
+    private void DestroyCoins()
+    {
+        foreach (GameObject coin in m_lCoinList)//Loop through the enemy list
+        {
+            Destroy(coin);//Destroy that enemy
+        }
+        m_lCoinList.Clear();//Clear the enemy list
+    }
+
+    /// <summary>
     /// Respawns the enemies.
     /// </summary>
     private void RespawnEnemies()
     {
         DestroyEnemies();//Destroy all remaining enemies
+        DestroyCoins();
         for (int y = 0; y < m_iLevelHeight; y++)//Loop through the map array
         {
             for (int x = 0; x < m_iLevelWidth; x++)
@@ -88,6 +121,13 @@ public class CS_LevelSpawner : MonoBehaviour
                     goNewLevelBlock.transform.position = transform.position;//Move it to the start pos
                     goNewLevelBlock.transform.Translate(x * goNewLevelBlock.transform.localScale.x, -(y * goNewLevelBlock.transform.localScale.y), 0);//Move it to its intended position
                     m_lEnemyBlockList.Add(goNewLevelBlock);//Add it to the enemy list
+                }
+                if (LevelMaps.Level1[y * m_iLevelWidth + x] == 4)//Coin
+                {
+                    GameObject goNewLevelBlock = Instantiate(m_goCoinPrefab, transform);
+                    goNewLevelBlock.transform.position = transform.position;
+                    goNewLevelBlock.transform.Translate(x * goNewLevelBlock.transform.localScale.x, -(y * goNewLevelBlock.transform.localScale.y), 0);
+                    m_lCoinList.Add(goNewLevelBlock);
                 }
             }
         }

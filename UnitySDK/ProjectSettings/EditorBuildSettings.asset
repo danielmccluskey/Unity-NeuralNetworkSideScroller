@@ -4,4 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/SideScroller/Scenes/SideScrollAcademy.unity
+    guid: 415c51bb6aec5f14eaccad3682a22b1d
+  m_configObjects: {}

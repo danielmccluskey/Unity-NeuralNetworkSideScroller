@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brainParameters:
     vectorObservationSize: 12
-    numStackedVectorObservations: 10
-    vectorActionSize: 03000000
+    numStackedVectorObservations: 3
+    vectorActionSize: 04000000
     cameraResolutions: []
     vectorActionDescriptions:
     - 
     vectorActionSpaceType: 0
-  model: {fileID: 0}
+  model: {fileID: 4900000, guid: 2a9a2fb5dd2aa7b489f6a0efce9730c7, type: 3}

@@ -23,7 +23,7 @@ public class CS_EnemyContact : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (other.transform.position.y - (other.transform.localScale.y / 2) > (transform.position.y + transform.localScale.y / 2))
+            if (other.transform.position.y - (other.transform.localScale.y / 2) > (m_goParentObject.transform.position.y + m_goParentObject.transform.localScale.y / 2))
             {
                 other.GetComponent<SideScrollerAgent>().EnemyStomped();
                 Destroy(m_goParentObject);

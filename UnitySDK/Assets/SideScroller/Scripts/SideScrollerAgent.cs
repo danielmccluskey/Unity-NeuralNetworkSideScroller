@@ -67,10 +67,10 @@ public class SideScrollerAgent : Agent
     {
         if (m_bUseVectorObservations)//If the agent is allowed to observe
         {
-            float fRayDistance = 20.0f;//Distance that they can see.
+            float fRayDistance = 15.0f;//Distance that they can see.
             float[] fRayAngles = { 0f, 180f };//What angles can I see?
             var sDetectableObjects = new[] { "Enemy", "Goal", "SideScrollerWall", "Hole" };//What tags should I care about seeing?
-            AddVectorObs(m_rRayPerception.Perceive(fRayDistance, fRayAngles, sDetectableObjects, 0f, 0f));//Send out the rays and add them to the observation list
+            AddVectorObs(m_rRayPerception.Perceive(fRayDistance, fRayAngles, sDetectableObjects, -0.4f, 0f));//Send out the rays and add them to the observation list
         }
     }
 
@@ -96,19 +96,19 @@ public class SideScrollerAgent : Agent
         m_v3MoveDirection = Vector3.zero;//Reset the move direction vector
         switch (Movement)//Switch statement to find out which action is being used
         {
-            //case 0://Sit completely still (Do nothing)
-            //    m_v3MoveDirection = new Vector3(0.0f, 0, 0.0f);
-            //    break;
+            case 0://Sit completely still (Do nothing)
+                m_v3MoveDirection = new Vector3(0.0f, 0, 0.0f);
+                break;
 
-            case 0://Move Left
+            case 1://Move Left
                 m_v3MoveDirection = new Vector3(-1.0f, 0, 0.0f);
                 break;
 
-            case 1://Move Right
+            case 2://Move Right
                 m_v3MoveDirection = new Vector3(1.0f, 0, 0.0f);
                 break;
 
-            case 2://Jump
+            case 3://Jump
                 if (IsOnGround())
                 {
                     m_bJump = true;
@@ -169,12 +169,6 @@ public class SideScrollerAgent : Agent
 
             Done();//Reset
         }
-        if (transform.position.x >= 350)//If they finish the level
-        {
-            AddReward(1.0f);//Reward them
-
-            Done();//Reset
-        }
     }
 
     /// <summary>
@@ -186,6 +180,7 @@ public class SideScrollerAgent : Agent
     {
         transform.position = m_v3StartingPos;//Go back to start
         m_v3MoveDirection = Vector3.zero;//Reset velocity vector
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         m_fFurthestXPos = m_v3StartingPos.x;//Reset progress
         m_goLevelManagerRef.GetComponent<CS_LevelSpawner>().ResetLevel();//Reset enemies
     }
@@ -236,6 +231,18 @@ public class SideScrollerAgent : Agent
     public void Killed()
     {
         AddReward(-2.0f);//Dircourage dieing
+        Done();//Reset
+    }
+
+    public void CoinCollected()
+    {
+        AddReward(0.5f);//Encourage coin collecting
+    }
+
+    public void GotToEnd()
+    {
+        AddReward(5.0f);//Reward them
+
         Done();//Reset
     }
 }
