@@ -72,7 +72,7 @@ public class SideScrollerAgent : Agent
     {
         if (m_bUseVectorObservations)//If the agent is allowed to observe
         {
-            float fRayDistance = 15.0f;//Distance that they can see.
+            float fRayDistance = 10.0f;//Distance that they can see.
             float[] fRayAngles = { 0f, 180f };//What angles can I see?
             var sDetectableObjects = new[] { "Enemy", "Goal", "SideScrollerWall", "Hole" };//What tags should I care about seeing?
             AddVectorObs(m_rRayPerception.Perceive(fRayDistance, fRayAngles, sDetectableObjects, -0.4f, 0f));//Send out the rays and add them to the observation list
