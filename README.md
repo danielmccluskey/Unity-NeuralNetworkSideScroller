@@ -1,5 +1,4 @@
-<img src="docs/vidthumb.png" align="middle" width="3000"/>
-
+[![Youtube Video](docs/vidthumb.png)](https://www.youtube.com/watch?v=elU-J99Hi8Y)
 # Sidescrolling Agents
 This repo contains a small Unity project that uses the Unity ML-Agents toolkit to train an agent to traverse through a sidescrolling game.
 
