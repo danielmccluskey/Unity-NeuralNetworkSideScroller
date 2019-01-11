@@ -114,7 +114,7 @@ MonoBehaviour:
     maxStep: 40000
     resetOnDone: 1
     onDemandDecision: 0
-    numberOfActionsBetweenDecisions: 5
+    numberOfActionsBetweenDecisions: 10
   m_goLevelManagerRef: {fileID: 1758838867040211403}
   m_lmGroundMask:
     serializedVersion: 2
