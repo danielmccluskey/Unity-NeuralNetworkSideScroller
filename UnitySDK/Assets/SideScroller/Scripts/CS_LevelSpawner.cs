@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//////////////////////////////////////////////////////////////////
+//Created by: Daniel McCluskey
+//Project: CT6007 - Machine Learning SideScrolling game
+//Script Purpose: Script which spawns the blocks that make up a level
+//////////////////////////////////////////////////////////////////
 public class CS_LevelSpawner : MonoBehaviour
 {
     [SerializeField]
@@ -27,7 +32,7 @@ public class CS_LevelSpawner : MonoBehaviour
     private GameObject m_goEnemyPrefab;//The prefab used for enemies
 
     [SerializeField]
-    private GameObject m_goCoinPrefab;
+    private GameObject m_goCoinPrefab;//Prefab that is spawned for coins
 
     // Start is called before the first frame update
     private void Start()

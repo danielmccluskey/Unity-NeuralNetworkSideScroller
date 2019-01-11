@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//////////////////////////////////////////////////////////////////
+//Created by: Daniel McCluskey
+//Project: CT6007 - Machine Learning SideScrolling game
+//Script Purpose: Simple script to move the enemies in the game
+//////////////////////////////////////////////////////////////////
 public class CS_EnemyController : MonoBehaviour
 {
     [SerializeField]
-    private float m_fSpeed = 1;
+    private float m_fSpeed = 1;//The speed of the enemy
 
-    private int m_iDirection = 1;
-
-    [SerializeField]
-    private Transform m_tLeftEdge;
-
-    [SerializeField]
-    private Transform m_tRightEdge;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-    }
+    private int m_iDirection = 1;//The current direction the enemy is moving in
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -26,14 +20,16 @@ public class CS_EnemyController : MonoBehaviour
         transform.position += new Vector3((m_iDirection * m_fSpeed) * Time.deltaTime, 0.0f, 0.0f);
     }
 
+    /// <summary>
+    /// Used to draw gizmo on all enemies
+    /// </summary>
     private void OnDrawGizmos()
     {
     }
 
-    private void CheckForHoles()
-    {
-    }
-
+    /// <summary>
+    /// Switches the direction of the enemy.
+    /// </summary>
     public void SwitchDirection()
     {
         if (m_iDirection == 1)

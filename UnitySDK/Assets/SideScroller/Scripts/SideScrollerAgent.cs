@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
 
+//////////////////////////////////////////////////////////////////
+//Created by: Daniel McCluskey
+//Project: CT6007 - Machine Learning SideScrolling game
+//Script Purpose: Script that defines the behaviour of the agents
+//////////////////////////////////////////////////////////////////
 public class SideScrollerAgent : Agent
 {
     [SerializeField]
@@ -114,22 +119,6 @@ public class SideScrollerAgent : Agent
                     m_bJump = true;
                 }
                 break;
-
-                //case 4://Jump Left
-                //    if (IsOnGround())
-                //    {
-                //        m_v3MoveDirection = new Vector3(-0.7f, 0.0f, 0.0f);
-                //        m_bJump = true;
-                //    }
-                //    break;
-
-                //case 5://Jump Right
-                //    if (IsOnGround())
-                //    {
-                //        m_v3MoveDirection = new Vector3(0.7f, 0.0f, 0.0f);
-                //        m_bJump = true;
-                //    }
-                //    break;
         }
 
         AddReward(-1f / agentParameters.maxStep);//Subtract from reward, to add incentive to finish quickly
@@ -234,11 +223,17 @@ public class SideScrollerAgent : Agent
         Done();//Reset
     }
 
+    /// <summary>
+    /// Function called when the agent collects a coin
+    /// </summary>
     public void CoinCollected()
     {
         AddReward(0.5f);//Encourage coin collecting
     }
 
+    /// <summary>
+    /// Function called when the agent reaches their goal
+    /// </summary>
     public void GotToEnd()
     {
         AddReward(5.0f);//Reward them
